@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Crypt Raider Demo (Offline)</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="emulators/helper.css">
+
+    <style>
+        html, body { margin: 0; padding: 0; height: 100%; overflow: hidden; }
+        #game { position: absolute; width: 100%; height: 100%; z-index: 2; }
+        #loading { position: absolute; width: 100%; height: 100%; z-index: 1; background-color: #000; color: #fff; gap: 15px; font-weight: 700; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .lds-ring { display: inline-block; position: relative; width: 80px; height: 80px; }
+        .lds-ring div { box-sizing: border-box; display: block; position: absolute; width: 64px; height: 64px; margin: 8px; border: 8px solid #fff; border-radius: 50%; animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite; border-color: #fff transparent transparent transparent; }
+        .lds-ring div:nth-child(1) { animation-delay: -0.45s; }
+        .lds-ring div:nth-child(2) { animation-delay: -0.3s; }
+        .lds-ring div:nth-child(3) { animation-delay: -0.15s; }
+        @keyframes lds-ring { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+
+    <div id="loading"><div id="gameTitle"></div><div class="lds-ring"><div></div><div></div><div></div><div></div></div></div>
+    <div id="game"></div>
+
+    <div id="buttonMenu" class="menuButton draggable rise-shake" onclick="showHiddenMenu()"><img src="emulators/assets/menu.png" alt="Menu" width="36" height="36"></div>
+    <div id="hiddenMenuBody">
+        <div id="hiddenMenu">
+            <div class="hiddenButtons">
+                <button id="button_fullscreen" class="hiddenButton">Fullscreen</button>
+                <button id="button_refresh" class="hiddenButton">Refresh</button>
+                <div class="change-emulators">
+                    <button id="emulate_ruffle" data-type="ruffle" class="hiddenButton button_emulate">Ruffle</button>
+                    <button id="emulate_ruffleObj" data-type="ruffleObj" class="hiddenButton button_emulate">RuffleObj</button>
+                    <button id="emulate_waflash" data-type="waflash" class="hiddenButton button_emulate">Waflash</button>
+                    <button id="emulate_awayfl" data-type="awayfl" class="hiddenButton button_emulate">AwayFL</button>
+                    <button id="emulate_avm2" data-type="avm2" class="hiddenButton button_emulate">AVM2</button>
+                </div>
+                <a href="#" id="buttonMoreGames" class="hiddenButton">Play More Games</a>
+                <button id="button_close"><img src="emulators/assets/close.png" alt="Close" width="48" height="48"></button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/ruffle/ruffle.js"></script>
+    <script>
+        // --- THIS IS THE CRITICAL FIX: Recreate the variables helper.js needs ---
+        const urlParams = new URLSearchParams(window.location.search);
+        var swfName = 'miniclip/cryptraider/loader.swf';
+        var gameName = 'Crypt Raider Demo';
+        // --- END OF CRITICAL FIX ---
+
+        const swfPath = 'games/swf/' + swfName;
+        const basePath = 'games/swf/miniclip/cryptraider/';
+
+        document.getElementById("gameTitle").innerHTML = gameName;
+        document.title = gameName;
+
+        window.RufflePlayer = window.RufflePlayer || {};
+        window.RufflePlayer.config = {
+            "autoplay": "on", "unmuteOverlay": "hidden", "letterbox": "fullscreen",
+            "warnOnUnsupportedContent": false, "contextMenu": true, "showSwfDownload": false,
+            "logLevel": "error", "base": basePath, "menu": true, "scale": "showAll",
+            "quality": "best", "backgroundColor": "#000000", "forceAlign": true, "forceScale": true
+        };
+
+        window.addEventListener("load", (event) => {
+            const ruffle = window.RufflePlayer.newest();
+            const player = ruffle.createPlayer();
+            const container = document.getElementById("game");
+            container.appendChild(player);
+            player.style.width = "100%";
+            player.style.height = "100%";
+            player.load({ url: swfPath });
+        });
+    </script>
+    
+    <script src="js/interact.min.js"></script>
+    <script src="emulators/helper.js"></script>
+
+</body>
+</html>

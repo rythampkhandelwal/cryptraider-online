@@ -1,0 +1,229 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Noto Sans', sans-serif;
+}
+
+#hiddenBody{
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#buttonMenu{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: .5;
+  transition: opacity .5s;
+}
+
+#buttonMenu:hover{
+  opacity: 1!important;
+  animation-play-state: paused;
+}
+
+.menuButton {
+  position: absolute;
+  z-index: 4;
+  top: 20px;
+  left: 20px;
+  background-color: #fff;
+  border-radius: 50%;
+  padding: 5px;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+}
+
+#hiddenMenu {
+  z-index: 3;
+  /*left: 50%;*/
+  /*transform: translate(-50%, 50%);*/
+  /*bottom: 50%;*/
+  padding: 40px 80px;
+  border-radius: 12px;
+  background-color: #fff;
+  display: none;
+  position: absolute;
+  gap: 10px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+}
+
+#hiddenMenuBody{
+    background-color: #000;
+    background-color: rgba(0,0,0,.7);
+    width: 100vw;
+    height: 100vh;
+    z-index: 2;
+    display:none;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#buttonMoreGames{
+  /*background: white;*/
+  /*background: linear-gradient(90deg, #fcff9e 0%, #c67700 100%);*/
+  /*animation: gradient 1s infinite 0.5s cubic-bezier(0.2, 0.8, 0.2, 1.2) forwards;*/
+}
+
+#buttonMoreGames:hover{
+  animation-play-state: paused;
+}
+
+#button_close{
+    border: 0;
+    background: none;
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    cursor: pointer;
+    transition: transform .2s;
+}
+
+#button_close:hover{
+    transform: scale(1.05);
+}
+
+.hiddenButtons{
+  display: flex;
+  flex-direction: column;
+  gap:5px;
+  justify-content: center;
+  align-items: center;
+}
+
+.hiddenButton{
+  border-radius: 12px;
+  width: 100%;
+  padding: 15px 20px;
+  cursor: pointer;
+  background-color: #000;
+  font-weight: 700;
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+  transition: background-color .2s;
+}
+
+.hiddenButton:hover{
+  background-color: rgba(0,0,0,.7)!important;
+}
+
+.hiddenButtons a{
+  text-decoration: none;
+}
+
+.rise-shake {
+  animation: jumpShaking 0.7s 2;
+}
+
+#button_copy_link{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    background-color: transparent;
+    border: none;
+}
+
+#button_copy_link svg path{
+    fill: #000;
+}
+
+#button_copy_link:hover{
+    background-color: transparent;
+}
+
+#button_copy_link:hover svg path{
+    fill: #fff;
+}
+
+.change-emulators{
+    display: flex;
+    gap: 5px;
+    align-items:center;
+    width:100%;
+}
+
+@keyframes jumpShaking {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  25% {
+    transform: translateY(-9px);
+    opacity: .9;
+  }
+  35% {
+    transform: translateY(9px) rotate(17deg);
+    opacity: .8;
+  }
+  55% {
+    transform: translateY(-9px) rotate(-17deg);
+    opacity: .7;
+  }
+  65% {
+    transform: translateY(9px) rotate(17deg);
+    opacity: .6;
+  }
+  75% {
+    transform: translateY(-9px) rotate(-17deg);
+    opacity: .5;
+  }
+  100% {
+    transform: translateY(0) rotate(0);
+    opacity: .4;
+  }
+}
+
+@keyframes gradient {
+    0% {
+        background: linear-gradient(90deg, #00d2ff 0%, #3a47d5 100%)
+    }
+
+    10% {
+        background: linear-gradient(90deg, #d53369 0%, #daae51 100%)
+    }
+
+    20% {
+        background: linear-gradient(90deg, #FDBB2D 0%, #3A1C71 100%)
+    }
+
+    30% {
+        background: linear-gradient(90deg, #FDBB2D 0%, #22C1C3 100%)
+    }
+
+    40% {
+        background: linear-gradient(90deg, #f8ff00 0%, #3ad59f 100%)
+    }
+
+    50% {
+        background: linear-gradient(90deg, #00C9FF 0%, #92FE9D 100%)
+    }
+
+    60% {
+        background: linear-gradient(90deg, #0700b8 0%, #00ff88 100%)
+    }
+
+    70% {
+        background: linear-gradient(90deg, #3F2B96 0%, #A8C0FF 100%)
+    }
+
+    80% {
+        background: linear-gradient(90deg, #FC466B 0%, #3F5EFB 100%)
+    }
+
+    90% {
+        background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%)
+    }
+
+    100% {
+        background: linear-gradient(90deg, #00d2ff 0%, #3a47d5 100%)
+    }
+}
